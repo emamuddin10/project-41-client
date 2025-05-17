@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import { FaArrowAltCircleRight, FaHeart, FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import UseAllBlogs from "../Hooks/UseAllBlogs";

@@ -1,7 +1,5 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Firebase/AuthProvider/AuthProvider";
-import { data } from "react-router-dom";
 import toast from "react-hot-toast";
 import UseAxiosSecure from "../Hooks/UseAxiosSecure";
 
