@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { AuthContext } from "../Firebase/AuthProvider/AuthProvider";
-import { FaArrowAltCircleRight, FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaArrowAltCircleRight, FaRegHeart } from "react-icons/fa";
 const AllBlogs = () => {
   const [allBlogs] = UseAllBlogs();
   const {user} = useContext(AuthContext);
@@ -44,7 +44,7 @@ const AllBlogs = () => {
 
   return (
     <div className="p-20">
-      <h1 className="text-xl font-bold mb-4">Recent Blog Post</h1>
+      <h1 className="text-2xl font-bold mb-4">All Blog Posts</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
         {allBlogs?.map((item) => (
           <div key={item._id} className="">

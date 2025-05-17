@@ -4,10 +4,10 @@ import { AuthContext } from "../../Firebase/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-   const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [hover, setHover] = useState(false);
 
-    const handleLogOut = () => {
+  const handleLogOut = () => {
     logOut()
       .then(() => {
         toast.success("Logout successfully");
@@ -22,9 +22,11 @@ const Navbar = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/addBlog">Add Blog</Link>
-      </li>
+      {user && (
+        <li>
+          <Link to="/addBlog">Add Blog</Link>
+        </li>
+      )}
 
       <li>
         <Link to="/allBlogs">All Blogs</Link>
@@ -34,9 +36,11 @@ const Navbar = () => {
         <Link to="/featureBlog">Featured Blog</Link>
       </li>
 
-      <li>
-        <Link to="/wishlist">Wishlist</Link>
-      </li>
+      {user && (
+        <li>
+          <Link to="/wishlist">Wishlist</Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -73,7 +77,6 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{menu}</ul>
       </div>
       <div className="navbar-end">
-        
         {user ? (
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 relative">

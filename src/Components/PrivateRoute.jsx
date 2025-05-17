@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AuthContext } from '../provider/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
+import { AuthContext } from '../Firebase/AuthProvider/AuthProvider';
 
 const PrivetRoute = ({children}) => {
     const {user,loading}=useContext(AuthContext)
