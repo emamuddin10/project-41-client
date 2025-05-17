@@ -1,20 +1,19 @@
 // pages/BlogDetails.jsx
 import { useParams, useNavigate, useLoaderData } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
-import UseAllBlogs from "../Hooks/UseAllBlogs";
+import { useContext, useEffect, useState } from "react";
 import UseAxiosSecure from "../Hooks/UseAxiosSecure";
 import toast from "react-hot-toast";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { AuthContext } from "../Firebase/AuthProvider/AuthProvider";
 
 const BlogDetails = () => {
   const blog = useLoaderData();
+  console.log('blogDetails',blog)
   const { id } = useParams();
   const navigate = useNavigate();
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const auth = getAuth();
-  const currentUser = auth.currentUser;
+  const {user} = useContext(AuthContext)
   const axiosSecure = UseAxiosSecure();
 
   useEffect(() => {
@@ -32,9 +31,9 @@ const BlogDetails = () => {
     const commentData = {
       blogId: id,
       text: newComment,
-      userName: currentUser.displayName,
-      userPhoto: currentUser.photoURL,
-      userEmail: currentUser.email,
+      userName: user?.displayName,
+      userPhoto: user?.photoURL,
+      userEmail: user?.email,
     };
 
     axiosSecure.post("/comment", commentData).then((res) => {
@@ -52,7 +51,7 @@ const BlogDetails = () => {
     });
   };
 
-  const isOwner = blog?.email === currentUser?.email;
+  const isOwner = blog?.ownerEmail === user?.email;
 
   if (!blog) return <div className="text-center mt-10">Loading...</div>;
 
