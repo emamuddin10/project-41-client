@@ -1,28 +1,29 @@
 // pages/BlogDetails.jsx
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
+import UseAllBlogs from "../Hooks/UseAllBlogs";
+import UseAxiosSecure from "../Hooks/UseAxiosSecure";
+import toast from "react-hot-toast";
 
 const BlogDetails = () => {
+  const blog = useLoaderData();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [blog, setBlog] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const auth = getAuth();
   const currentUser = auth.currentUser;
+  const axiosSecure = UseAxiosSecure();
 
   useEffect(() => {
     // fetch blog details
-    fetch(`/api/blogs/${id}`)
-      .then(res => res.json())
-      .then(data => setBlog(data));
-
-    // fetch comments
-    fetch(`/api/comments?blogId=${id}`)
-      .then(res => res.json())
-      .then(data => setComments(data));
-  }, [id]);
+    // fetch comments or get
+    axiosSecure.get(`/getComment`).then((res) => {
+      console.log(res.data);
+      setComments(res.data);
+    });
+  }, []);
 
   const handleCommentSubmit = async () => {
     if (!newComment) return;
@@ -35,19 +36,19 @@ const BlogDetails = () => {
       userEmail: currentUser.email,
     };
 
-    await fetch("/api/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(commentData),
+    axiosSecure.post("/comment", commentData).then((res) => {
+      console.log(res.data);
+      if (res.data.intertedId) {
+        toast.success("Thank you For your openion");
+      }
     });
 
     setNewComment("");
     // reload comments
-    fetch(`/api/comments?blogId=${id}`)
-      .then(res => res.json())
-      .then(data => setComments(data));
+    axiosSecure.get(`/getComment`).then((res) => {
+      console.log(res.data);
+      setComments(res.data);
+    });
   };
 
   const isOwner = blog?.email === currentUser?.email;
@@ -59,12 +60,17 @@ const BlogDetails = () => {
       {/* Main Content */}
       <div className="md:col-span-3">
         <div className="bg-white p-6 rounded shadow">
-          <img src={blog.image} alt="Blog" className="w-full h-64 object-cover rounded mb-4" />
+          <img
+            src={blog.imageUrl}
+            alt="Blog"
+            className="w-full h-64 object-cover rounded mb-4"
+          />
           <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
           <p className="text-sm text-gray-500 mb-4">
             By {blog.author} | {new Date(blog.date).toLocaleDateString()}
           </p>
-          <p className="text-lg text-gray-700">{blog.content}</p>
+          <p className="text-lg text-gray-700">{blog.shortDesc}</p>
+          <p className="text-lg text-gray-700">{blog.longDesc}</p>
 
           {isOwner && (
             <button
@@ -125,19 +131,33 @@ const BlogDetails = () => {
           <h3 className="text-lg font-semibold mb-3">Popular Posts</h3>
           <ul className="space-y-2">
             {/* Example Static Popular Posts */}
-            <li className="text-blue-600 hover:underline cursor-pointer">How to write clean code</li>
-            <li className="text-blue-600 hover:underline cursor-pointer">Top 10 React Hooks</li>
-            <li className="text-blue-600 hover:underline cursor-pointer">What’s new in JavaScript 2025</li>
+            <li className="text-blue-600 hover:underline cursor-pointer">
+              How to write clean code
+            </li>
+            <li className="text-blue-600 hover:underline cursor-pointer">
+              Top 10 React Hooks
+            </li>
+            <li className="text-blue-600 hover:underline cursor-pointer">
+              What’s new in JavaScript 2025
+            </li>
           </ul>
         </div>
 
         <div className="bg-white p-4 rounded shadow">
           <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
           <div className="flex space-x-4 text-xl text-blue-600">
-            <a href="#"><i className="fab fa-facebook"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-linkedin"></i></a>
+            <a href="#">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-linkedin"></i>
+            </a>
           </div>
         </div>
       </aside>
