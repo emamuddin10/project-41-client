@@ -5,11 +5,11 @@ const UpdateBlog = () => {
   const blogs = useLoaderData()
   console.log(blogs)
   const [formData, setFormData] = useState({
-    title: "",
-    imageUrl: "",
-    category: "",
-    shortDesc: "",
-    longDesc: "",
+    title: blogs.title,
+    imageUrl: blogs?.imageUrl,
+    category: blogs?.category,
+    shortDesc: blogs?.shortDesc,
+    longDesc: blogs?.longDesc,
   });
 
   const handleChange = (e) => {
@@ -19,7 +19,8 @@ const UpdateBlog = () => {
 
    const handleSubmit = async (e) => {
     e.preventDefault();
-   
+    console.log("Blog submitted:", formData);
+    
    
   };
 
