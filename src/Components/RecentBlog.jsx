@@ -53,13 +53,15 @@ const RecentBlog = () => {
           <div key={item._id} className="">
             <div className="">
               <div className="relative top-10 left-5 z-50 text-2xl font-extrabold">
-                <button
+                <Link to='/wishlist'>
+                  <button
                   className="cursor-pointer"
                   onClick={() => handleWishlist(`${item?._id}`)}
                 >
                     {/* <FaHeart className="text-white" /> */}
                     <FaRegHeart className="text-white" />
                 </button>
+                </Link>
               </div>
               <img className="h-[330px] relative" src={item?.imageUrl} alt="" />
             </div>
