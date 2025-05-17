@@ -12,11 +12,13 @@ import Wishlist from "./Pages/Wishlist";
 import FeaturedBlog from "./Pages/FeaturedBlog";
 import UpdateBlog from "./Components/UpdateBlog";
 import PrivetRoute from "./Components/PrivateRoute";
+import ErrPage from "./Components/ErrPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    errorElement:<ErrPage></ErrPage>,
     children:[
         {
             path:'/',
