@@ -4,7 +4,7 @@ import WishlistRow from '../Components/WishlistRow';
 
 const Wishlist = () => {
     const [myWish,refetch] = UseMyWishlisted()
-    console.log(myWish);
+    // console.log(myWish);
     return (
          <div>
       <div>

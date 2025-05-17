@@ -29,8 +29,11 @@ const RecentBlog = () => {
       status: "In Stock",
     };
 
+    if(!user){
+      return toast.error("You're not logged user please login")
+    }
    
-    axios.post("http://localhost:5000/addWishlist", wishlistItem)
+    axios.post("https://project-41-server.onrender.com/addWishlist", wishlistItem)
       .then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {

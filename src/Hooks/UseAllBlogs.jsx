@@ -7,7 +7,7 @@ const UseAllBlogs = () => {
     const {data:allBlogs} = useQuery({
         queryKey:['blogs'],
         queryFn: async()=>{
-            const {data} = await axiosSecure.get('http://localhost:5000/allBlogs')
+            const {data} = await axiosSecure.get('https://project-41-server.onrender.com/allBlogs')
             return data;
         }
     })

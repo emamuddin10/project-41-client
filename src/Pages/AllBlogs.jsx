@@ -29,7 +29,7 @@ const AllBlogs = () => {
     };
 
     axios
-      .post("http://localhost:5000/addWishlist", wishlistItem)
+      .post("https://project-41-server.onrender.com/addWishlist", wishlistItem)
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Wishlist item added successfully");

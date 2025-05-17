@@ -51,12 +51,12 @@ const router = createBrowserRouter([
         {
             path:'/details/:id',
             element:<BlogDetails></BlogDetails>,
-            loader:({params})=> fetch(`http://localhost:5000/blogDetails/${params.id}`)
+            loader:({params})=> fetch(`https://project-41-server.onrender.com/blogDetails/${params.id}`)
         },
         {
             path:'/update-blog/:id',
             element:<PrivetRoute><UpdateBlog></UpdateBlog> </PrivetRoute>,
-            loader:({params})=> fetch(`http://localhost:5000/blogDetails/${params.id}`)
+            loader:({params})=> fetch(`https://project-41-server.onrender.com/blogDetails/${params.id}`)
         },
     ]
   },
