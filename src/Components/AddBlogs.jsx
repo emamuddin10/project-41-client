@@ -24,8 +24,9 @@ const AddBlog = () => {
     const date = new Date().toISOString().split('T')[0];
     const blogerName = user.displayName;
     const blogerImg = user.photoURL;
+    const ownerEmail = user.email;
     const comment = 0;
-    const allData = { ...formData, date, blogerImg, blogerName, comment };
+    const allData = { ...formData, date, blogerImg, blogerName, comment, ownerEmail};
     // console.log(allData);
     await axios.post("http://localhost:3000/addBLog", allData).then((res) => {
       // console.log(res.data);
