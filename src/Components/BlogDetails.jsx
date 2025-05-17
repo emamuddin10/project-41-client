@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import UseAllBlogs from "../Hooks/UseAllBlogs";
 import UseAxiosSecure from "../Hooks/UseAxiosSecure";
 import toast from "react-hot-toast";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const BlogDetails = () => {
   const blog = useLoaderData();
@@ -147,16 +148,16 @@ const BlogDetails = () => {
           <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
           <div className="flex space-x-4 text-xl text-blue-600">
             <a href="#">
-              <i className="fab fa-facebook"></i>
+              <FaFacebook></FaFacebook>
             </a>
             <a href="#">
-              <i className="fab fa-twitter"></i>
+              <FaTwitter></FaTwitter>
             </a>
             <a href="#">
-              <i className="fab fa-instagram"></i>
+              <FaInstagram></FaInstagram>
             </a>
             <a href="#">
-              <i className="fab fa-linkedin"></i>
+              <FaLinkedin></FaLinkedin>
             </a>
           </div>
         </div>
