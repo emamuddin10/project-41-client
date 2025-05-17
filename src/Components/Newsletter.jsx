@@ -24,7 +24,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-10 px-4">
+    <section className="bg-gray-200 py-10 px-4">
       <div className="max-w-xl mx-auto text-center">
         <h2 className="text-2xl font-bold mb-2">Subscribe to Our Newsletter</h2>
         <p className="text-gray-600 mb-6">Stay updated with the latest blog posts and news.</p>
@@ -32,7 +32,7 @@ const Newsletter = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full sm:w-auto flex-1 px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full sm:w-auto flex-1 px-4 py-2 rounded border border-gray-400 focus:outline-none focus:ring focus:ring-blue-300"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
