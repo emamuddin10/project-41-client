@@ -48,7 +48,7 @@ const RecentBlog = () => {
   return (
     <div className="p-20">
       <h1 className="text-xl font-bold mb-4">Recent Blog Post</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-5">
         {allBlogs?.map((item) => (
           <div key={item._id} className="">
             <div className="">
