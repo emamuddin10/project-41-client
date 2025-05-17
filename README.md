@@ -1,12 +1,18 @@
-# React + Vite
+My website Live Link: 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+5 Key Features of my Blog Website:
 
-Currently, two official plugins are available:
+* Category & Title-Based Blog Filtering
+Users can easily search and filter blogs based on category and blog title for a better browsing experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* User Wishlist System
+Logged-in users can add blogs to their personal wishlist and view them later on a dedicated wishlist page.
 
-## Expanding the ESLint configuration
+* Blog Comment Section
+Each blog details page includes a comment section where users can leave comments (except on their own blogs), and all comments show the commenter’s name and profile picture.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Featured Blogs Table
+A table displays the top 10 featured blogs based on the word count of each blog's long description.
+
+* Newsletter Subscription with Toast Notification
+When users submit their email, a toast message confirms their subscription to the newsletter—no actual email sending needed.
