@@ -3,9 +3,11 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../Firebase/AuthProvider/AuthProvider";
 import { data } from "react-router-dom";
 import toast from "react-hot-toast";
+import UseAxiosSecure from "../Hooks/UseAxiosSecure";
 
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = UseAxiosSecure()
   const [formData, setFormData] = useState({
     title: "",
     imageUrl: "",
@@ -28,7 +30,7 @@ const AddBlog = () => {
     const comment = 0;
     const allData = { ...formData, date, blogerImg, blogerName, comment, ownerEmail};
     // console.log(allData);
-    await axios.post("http://localhost:3000/addBLog", allData).then((res) => {
+    await axiosSecure.post("/addBLog", allData).then((res) => {
       // console.log(res.data);
       if (res.data.insertedId) {
         toast.success("blog added successfully");
